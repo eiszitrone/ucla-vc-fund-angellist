@@ -1,0 +1,20 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Logo</th>
+        <th>Name</th>
+        <th>Joined Date</th>
+        <th>Angellist URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="result in results">
+        <td><img ng-src="{{result.logo_url}}" class="user-pic"></td>
+        <td>{{result.name}}</td>
+        <td>{{result.created_at}}</td>
+        <td><a href="{{result.angellist_url}}">{{result.angellist_url}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
