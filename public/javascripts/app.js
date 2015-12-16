@@ -29,6 +29,14 @@ app.controller('s1Controller', function ($scope, $http){
 
     });
   };
+  $scope.currentMonth = function() {
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1;
+    if (month < 10) month = "0" + month;
+    $scope.searchDate = month + "/" + year;
+    $scope.search();
+  };
 
 });
 

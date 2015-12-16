@@ -1,7 +1,9 @@
-<form>
-  <label for="dateInput">Date</label>
-  <input type="text" ng-model="searchDate" id="dateInput">
-  <button class="btn btn-primary" ng-click="search()">Register</button>
+<p class="info">Query S-1 filings for either the month(mm/yyyy) OR year(yyyy)</p>
+<form class="form-inline">
+  <label for="dateInput">Date:</label>
+  <input type="text" ng-model="searchDate" id="dateInput" class="form-control">
+  <button class="btn btn-default" ng-click="search()">Search</button>
+  <button class="btn btn-default" ng-click="currentMonth()">current month</button>
 </form>
 
 <table class="table">
