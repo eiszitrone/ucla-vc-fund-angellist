@@ -9,8 +9,8 @@ app.controller('welcomeController', function ($scope, $http){
     });
 });
 
-app.controller('resultsController', function ($scope, $http){
-    $http.get('/startups')
+app.controller('angellistController', function ($scope, $http){
+    $http.get('/angellist')
     .success(function (data) {
         $scope.results = data;
     })
@@ -19,14 +19,32 @@ app.controller('resultsController', function ($scope, $http){
     });
 });
 
+app.controller('s1Controller', function ($scope, $http){
+  $scope.search = function() {
+    $http.get('/s1', {params: { searchDate: $scope.searchDate }})
+    .success(function (data) {
+        $scope.results = data;
+    })
+    .error(function () {
+
+    });
+  };
+
+});
+
+
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'welcome.html',
             controller: "welcomeController"
         })
-        .when('/startups', {
-          templateUrl: 'results.html',
-          controller: "resultsController"
+        .when('/angellist', {
+          templateUrl: 'angellist.html',
+          controller: "angellistController"
+        })
+        .when('/s1', {
+          templateUrl: 's1.html',
+          controller: "s1Controller"
         })
 });

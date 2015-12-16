@@ -25,7 +25,7 @@ function scraper(url, ndays) {
     ph.createPage(function (page) {
       page.open(url, function (status) {
         console.log(status);
-        page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js", function() {
+        page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", function() {
 
           // click the joined button, wait for 2 secs for page to load
           setTimeout(function() {
@@ -55,7 +55,7 @@ function scraper(url, ndays) {
               },
               // results: all startup ids
               function(results) {
-                console.log(results);
+                console.log("result: " + results);
                 var count = results.length;
                 for(var i = 0; i < results.length; ++i) {
                   angelApi.getStartupById(results[i], function(result) {
@@ -114,10 +114,13 @@ function disConnect(count) {
   }
 }
 
-function main() {
+function scrapeAngelist() {
   for (var i = 0; i < url_list.length; ++i) {
+    // find the most recent added compines within 14 days
     scraper(url_list[i], 14);
   }
 }
 
-main();
+scrapeAngelist();
+
+// module.exports.scrapeAngelist = scrapeAngelist;

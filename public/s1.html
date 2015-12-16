@@ -1,0 +1,22 @@
+<form>
+  <label for="dateInput">Date</label>
+  <input type="text" ng-model="searchDate" id="dateInput">
+  <button class="btn btn-primary" ng-click="search()">Register</button>
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Name</th>
+      <th>url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="result in results">
+      <td>{{result.date}}</td>
+      <td>{{result.name}}</td>
+      <td><a href="{{result.url}}">{{result.url}}</a></td>
+    </tr>
+  </tbody>
+</table>
