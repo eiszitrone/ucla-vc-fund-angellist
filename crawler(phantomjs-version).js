@@ -2,6 +2,7 @@ var url = 'https://angel.co/university-of-california-los-angeles';
 var page = require('webpage').create();
 page.viewportSize = { width: 1920, height: 1080 };
 
+console.log('in');
 page.open(url, function(status) {
   console.log(status);
   page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js", function() {
