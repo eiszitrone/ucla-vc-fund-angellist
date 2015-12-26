@@ -55,6 +55,7 @@ function scraper(url, ndays) {
               },
               // results: all startup ids
               function(results) {
+                console.log(url);
                 console.log("result: " + results);
                 var count = results.length;
                 for(var i = 0; i < results.length; ++i) {
@@ -106,10 +107,10 @@ function scraper(url, ndays) {
 
 //disconnect db
 function disConnect(count) {
-  console.log("called with " + count);
+  // console.log("called with " + count);
   if (count === 0) {
     nConnection -= 1;
-    console.log("connection: " + nConnection);
+    // console.log("connection: " + nConnection);
     if (nConnection === 0) mongoose.disconnect();
   }
 }
