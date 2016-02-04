@@ -18,3 +18,5 @@ phantomjs getID.js 7 https://angel.co/university-of-california-extension-los-ang
 echo -n "," >> result/7.txt
 cd result
 cat 0.txt 1.txt 2.txt 3.txt 4.txt 5.txt 6.txt 7.txt > result.txt
+cd ..
+scp -i uclaVCfund-angellist.pem result/result.txt ubuntu@52.32.83.104:~/.

@@ -53,4 +53,13 @@ function disConnect(count) {
     mongoose.disconnect();
   }
 }
+
+function emptyDB() {
+  Startup.remove({}, function(err) {
+    if(err){
+      console.log(err)
+    }
+  });
+}
+
 saveToDB('./result/result.txt', 14);
