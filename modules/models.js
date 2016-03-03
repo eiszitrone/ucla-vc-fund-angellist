@@ -11,9 +11,29 @@ var startupSchema = new mongoose.Schema(
   {
     "id": Number,
     "name": String,
+    "product_desc": String,
+    "high_concept": String,
+    "company_url": String,
+    "crunchbase_url": String,
+    "linkedin_url": String,
+    "company_size": String,
+    "location": [String],
+    "markets": [String],
     "created_at": String,
     "angellist_url" : String,
-    "logo_url" : String
+    "logo_url" : String,
+    "founders" : [{
+      "founderName": String,
+      "founderId": Number,
+      "founderAngelURL": String,
+      "founderBio": String
+    }],
+    "investors": [{
+      "investorName": String,
+      "investorId": Number,
+      "investorAngelURL": String,
+      "investorURL": String
+    }]
   }
 );
 

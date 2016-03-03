@@ -17,13 +17,63 @@ function saveToDB(file, ndays) {
         Startup.findOne({"id": result.id}, function(err, user) {
           //user is not added yet
           if (user === null) {
+            var markets = [];
+            var locations = [];
+
+            //get the markets
+            for (var j = 0; j < result.markets.length; ++j) {
+              markets.push(result.markets[j].display_name);
+            }
+
+            //get the locations
+            for (j = 0; j < result.locations.length; ++j) {
+              locations.push(result.locations[j].display_name);
+            }
+            //get founders
+            var founders = [];
+            angelApi.getFounderByStartupId(results[i], function(founderInfo)) {
+              for (j = 0; j < result.length; ++j) {
+                founders.push(
+                  {
+                    founderName: founderInfo[j].tagged.name,
+                    founderId:   founderInfo[j].tagged.id,
+                    founderAngelURL: founderInfo[j].tagged.angellist_url,
+                    founderBio:  founderInfo[j].tagged.bio
+                  }
+                );
+              }
+            }
+            //get investers
+            var investors = [];
+            angelApi.getInvestorsByStartupId(results[i], function(investorInfo)) {
+              for (j = 0; j < founderInfo.startup_roles.length; ++j) {
+                investors.push(
+                  {
+                    investorName: investorInfo.startup_roles[j].tagged.name,
+                    investorId:   investorInfo.startup_roles[j].tagged.id,
+                    investorAngelURL: investorInfo.startup_roles[j].tagged.angellist_url,
+                    investorURL:  investorInfo.startup_roles[j].company_url
+                  }
+                );
+              }
+            }
             var newStartup = new Startup(
               {
                 id: result.id,
                 name: result.name,
+                product_desc: result.product_desc,
+                high_concept: result.high_concept,
+                company_url: result.company_url,
+                crunchbase_url: result.crunchbase_url,
+                linkedin_url: result.crunchbase_url,
+                company_size: result.company_size,
+                location: locations,
+                markets: markets,
                 created_at: result.created_at,
                 angellist_url: result.angellist_url,
-                logo_url : result.logo_url
+                logo_url : result.logo_url,
+                founders: founders,
+                investors: investors
               }
             );
             newStartup.save(function(err) {

@@ -32,4 +32,29 @@ var getStartupById = function (id, callback) {
       console.error(e);
   });
 };
+var getFounderByStartupId = function (id, callback) {
+  var searchOption = {
+    hostname: 'api.angel.co',
+    path: '/1/startup_roles?v=1&startup_id=' + id + '&role=founder&access_token=' + access_token,
+    method: 'GET'
+  };
+  var searchReq = https.request(searchOption, function (searchRes) {
+    var searchData = "";
+    searchRes.setEncoding('utf8');
+
+    searchRes.on('data', function(d) {
+      searchData += d;
+    });
+
+    searchRes.on('end', function() {
+      searchData = JSON.parse(searchData);
+      callback(searchData);
+    })
+  });
+
+  searchReq.end();
+  searchReq.on('error', function (e) {
+      console.error(e);
+  });
+}
 module.exports.getStartupById = getStartupById;
